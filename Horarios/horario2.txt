@@ -1,0 +1,5 @@
+segunda ; (TMD 8:00 9:00) (EES 9:00 11:00) (PF 11:00 12:00)
+terca ; (CALCULO 8:00 10:00) (ALGEBRA 10:00 12:00) (TMD 14:00 16:00)
+quarta ;
+quinta ; (CALCULO 9:00 10:00) (ALGEBRA 10:00 11:00) (TMD 11:00 12:00) (PF 14:00 15:00)
+sexta ; (PF 8:00 10:00),(LI 10:00 12:00),(TMD 13:00 15:00)s
