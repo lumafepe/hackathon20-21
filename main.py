@@ -24,7 +24,7 @@ pathpasta = "/home/{}/Documents/aulas/".format(user)
 os.system("mkdir -p " + pathpasta)
 
 #horario em string
-a = open('Horarios/horario1.txt', 'r')
+a = open('Horarios/horario.txt', 'r')
 hor = (a.read()).split('\n') # horarios
 a.close()
 
