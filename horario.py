@@ -19,7 +19,7 @@ def separa (dia,lista):
 #Vai ao horario para um dado dia e verifica a aula que esta a ter a uma dada hora
 def removedia(dia,hora,minutos):
     if (dia == []) or (dia == [""]) or (dia[0].isspace() == True):
-        return 'NADA'
+        return 'OUTRO'
     else:
         for i in dia:
             i = i[1:(len(i) - 1)]
@@ -32,7 +32,7 @@ def removedia(dia,hora,minutos):
             ha = hora*60 + minutos
             if (ha>=hi) and (ha<=hf):
                 return cadeira
-    return 'NADA'
+    return 'OUTRO'
 
 def diadasemana (num):
     if num == 0:
