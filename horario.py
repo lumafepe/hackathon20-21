@@ -2,6 +2,8 @@ import json
 with open('horario.json') as json_file: 
     data = json.load(json_file) 
 
+
+
 def disciplinasdodia(dia,hora,minutos):
     
     try:
@@ -23,7 +25,7 @@ def disciplinasdodia(dia,hora,minutos):
             else:
                 return "NADA"
     except:
-        return "NADA2"
+        return "NADA"
 
 
 

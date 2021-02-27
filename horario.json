@@ -36,5 +36,16 @@
         "TFM" : {
             "hora inicial" : "15:00",
             "hora final" : "16:00"
-        } }
+        } },
+    "sabado" :{
+        "TESTE" : {
+            "hora inicial" : "8:00",
+            "hora final" : "24:00"
+        } },
+    "domingo" :{
+        "TESTE" : {
+            "hora inicial" : "8:00",
+            "hora final" : "24:00"
+        }}
+
 }

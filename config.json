@@ -1,0 +1,13 @@
+{
+    "exemplo de diretorio:(default)":"/home/{user}/Pictures/",
+    "onde As Imagens Vao Parar":"",
+
+    "exemplo de diretorio:(default)":"/home/{user}/Documents/",
+    "onde colocar as imagens":"",
+
+    "exemplo de nome:(default)":"aulas/",
+    "nome da pasta onde guardar":"aulas/",
+    
+    "formato da data:(default)":"dia-mes-ano",
+    "formato de datas":"dia-mes-ano"
+}
