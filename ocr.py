@@ -27,7 +27,7 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
     if os.path.exists(onde+'/Resumo_da_aula.md'):
         # fich "ocr.pdf"
                 
-        if ( fich.split('.').pop(0) ) == "ocr":
+        if "ocr" in fich:
 
             ocrt = gettext(onde+'/'+fich)
             
@@ -40,11 +40,16 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
             aula.write("\n----------------------------------------------------------------------------------\n")
             print("imagem")
     else :
-        
-        ocrt = gettext(onde+'/'+fich)
-        aula = open (onde+'/Resumo_da_aula.md','w')
-        aula.write(ocrt)
-    
+        if "ocr" in fich:
+
+            ocrt = gettext(onde+'/'+fich)
+            
+            aula = open (onde+'/Resumo_da_aula.md','w')
+            aula.write(ocrt+"\n\n----------------------------------------------------------------------------------\n")
+        else:
+            aula = open (onde+'/Resumo_da_aula.md','w')
+            aula.write("![]("+fich+")\n\n----------------------------------------------------------------------------------\n")
+            print("imagem")
     aula.close()
     
     # ![](fich) 

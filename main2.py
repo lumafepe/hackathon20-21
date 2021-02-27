@@ -48,15 +48,15 @@ class MyHandler(FileSystemEventHandler):
                 
         #nome da nova foto
         ficheirocriado = loader.up(pics)
-        nome = len(os.listdir(base))
-        if nome>1:
-            nome=str(nome)
-        else:
-            nome = str(nome+1)
+        fc=ficheirocriado
+        n=1
+        while os.path.exists(base + '/' + fc):
+            nome,tipo = fc.split('.')
+            fc = nome+f"-v{n}."+tipo
+            n+=1
         # mover para o novo sitio
-        os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base)
+        os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base +'/'+fc)
         # adicionado ficheiro de texto
-        os.system(f"touch {base}/texto.txt")
 
         # obtem texto
         time.sleep(1)
