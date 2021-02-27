@@ -25,17 +25,19 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
 #----------------------------------------------------------
 # em teste
     if os.path.exists(onde+'/Resumo_da_aula.md'):
-        if fich == "ocr.png":
+        # fich "ocr.pdf"
+                
+        if ( fich.split('.').pop(0) ) == "ocr":
 
             ocrt = gettext(onde+'/'+fich)
             
             aula = open (onde+'/Resumo_da_aula.md','a')
             aula.write(ocrt)
-            aula.write("----------------------------------------------------------------------------------")
+            aula.write("\n----------------------------------------------------------------------------------\n")
         else:
             aula = open (onde+'/Resumo_da_aula.md','a')
             aula.write("![]("+fich+")")
-            aula.write("----------------------------------------------------------------------------------")
+            aula.write("\n----------------------------------------------------------------------------------\n")
             print("imagem")
     else :
         
