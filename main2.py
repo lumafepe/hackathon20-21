@@ -59,10 +59,14 @@ class MyHandler(FileSystemEventHandler):
                 tipo=nome.pop()
                 nome=""
                 for i in nome:
-                    nomes+=i+","
+                    nomes+=i+"."
                 nomes=nomes[:-1]
                 fc = nomes+f"-{n}."+tipo
                 n+=1
+            
+
+
+
             # mover para o novo sitio
             #os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base +'/'+fc)
             pathinput  = os.path.join( pics,ficheirocriado)
@@ -76,9 +80,6 @@ class MyHandler(FileSystemEventHandler):
                     
             ocr.inseretexto(base,fc)
     
-
-
-
 
 
 def handler(sig, frame):
