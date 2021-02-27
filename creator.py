@@ -63,14 +63,13 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) :
+        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and (':' in hi) and (':' in hf) :
             # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
             hi1,hi2=hi.split(':')
             hf1,hf2=hf.split(':')
             # digit = hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit()
             # validos = 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60
-            if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
-                assert()
+            if len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
                 if not dia in data:
                     data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
                 else:
@@ -84,18 +83,24 @@ class Ui_MainWindow(object):
                     outfile.write(json_object) 
                 msg = QMessageBox()
                 msg.setWindowTitle("Sucesso")
-                msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
+                msg.setText("Aula adicionada com sucesso")
                 x = msg.exec_()
             else:
                 msg = QMessageBox()
                 msg.setWindowTitle("Erro")
-                msg.setText("por favor escreve coisas")
+                msg.setText("Por favor escreve horas válidas")
                 msg.setIcon(QMessageBox.Critical)
                 x = msg.exec_()
+        elif (dia == "" or cadeira == "" or hi=="" or hf=="") :
+            msg = QMessageBox()
+            msg.setWindowTitle("Erro")
+            msg.setText("Os campos não podem estar em branco")
+            msg.setIcon(QMessageBox.Critical)
+            x = msg.exec_()
         else:
             msg = QMessageBox()
             msg.setWindowTitle("Erro")
-            msg.setText("por favor escreve coisas")
+            msg.setText("Escreve as horas no formato hora:min")
             msg.setIcon(QMessageBox.Critical)
             x = msg.exec_()
 
@@ -108,12 +113,12 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.diaDaSemana.setPlaceholderText(_translate("MainWindow", "segunda"))
-        self.label.setText(_translate("MainWindow", "dia da semana"))
-        self.label_2.setText(_translate("MainWindow", "cadeira"))
+        self.label.setText(_translate("MainWindow", "Dia da semana"))
+        self.label_2.setText(_translate("MainWindow", "Cadeira"))
         self.cadeira.setPlaceholderText(_translate("MainWindow", "Matematica"))
-        self.label_3.setText(_translate("MainWindow", "hora de inicio"))
+        self.label_3.setText(_translate("MainWindow", "Hora de inicio"))
         self.hI.setPlaceholderText(_translate("MainWindow", "8:00"))
-        self.label_4.setText(_translate("MainWindow", "hora de fim"))
+        self.label_4.setText(_translate("MainWindow", "Hora de fim"))
         self.hF.setPlaceholderText(_translate("MainWindow", "16:00"))
         self.submit.setText(_translate("MainWindow", "submit"))
 
