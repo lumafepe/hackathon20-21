@@ -38,7 +38,7 @@ class Ui_MainWindow(object):
     def faz(self):
         if (self.Slider.value()==0):
             pid = pickle.load( open( "pid", "rb" ) )
-            os.system(f"kill -9 {pid}")
+            os.system(f"kill -SIGINT {pid}")
         
         else:
             subprocess.call("python main2.py &", shell=True)
