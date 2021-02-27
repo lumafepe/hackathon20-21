@@ -63,7 +63,13 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if not (dia=="" or cadeira=="" or hi=="" or hf==""):
+        # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
+        hi1,hi2=hi.split(':')
+        hf1,hf2=hf.split(':')
+        # digit = hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit()
+        # validos = 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60
+        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
+            assert()
             if not dia in data:
                 data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
             else:
