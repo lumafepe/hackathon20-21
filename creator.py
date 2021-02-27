@@ -11,6 +11,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("Diario de Bordo Creator")
         MainWindow.resize(264, 196)
+        MainWindow.setWindowIcon(QtGui.QIcon('icon.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.diaDaSemana = QtWidgets.QTextEdit(self.centralwidget)
