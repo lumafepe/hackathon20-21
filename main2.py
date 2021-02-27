@@ -10,9 +10,12 @@ import horario
 import ocr
 import json
 import subprocess
+import pickle
+
 
 #user
 user = getuser()
+
 
 #configs
 with open('config.json') as json_file: 
@@ -32,6 +35,8 @@ pathpasta+=data["nome da pasta onde guardar"]
 #cria a pasta da aulas se nao existir
 os.system("mkdir -p " + pathpasta)
 
+pid = str(os.getpid())
+pickle.dump(pid,open("pid.txt", "wb"))
 
 #event logger
 class MyHandler(FileSystemEventHandler):
