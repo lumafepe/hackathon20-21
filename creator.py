@@ -81,8 +81,8 @@ class Ui_MainWindow(object):
             x = msg.exec_()
         else:
             msg = QMessageBox()
-            msg.setWindowTitle("Deixa de ser burro")
-            msg.setText("pls da-te ao trabalho de escrever cenas fogo")
+            msg.setWindowTitle("Erro")
+            msg.setText("por favor escreve coisas")
             msg.setIcon(QMessageBox.Critical)
             x = msg.exec_()
 
