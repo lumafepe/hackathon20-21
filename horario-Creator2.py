@@ -3,34 +3,38 @@ import json
 semana=""
 fim=""
 horario = {}
-print("escreva fim para acabar")
 while semana!="fim":
-    semana = input("dia da semana: ")
+    print("Escreva fim para acabar")
+    semana = input("Introduza o dia da semana: ")
     semana=semana.lower()
+    print('\n')
     dia = {}
     if semana!="fim":
         a=""
-        print("escreva fim em cadeira para acabar")
         while a!="FIM":
-            a = input('cadeira: ')
+            print("Escreva fim em cadeira para acabar")
+            a = input('Nome da cadeira : ')
             a = a.upper()
             aula = {}
             if a!= 'FIM':
-                b = input('hora:minutos de inicio: ')
-                c = input('hora:minutos de fim: ')
+                b = input('Escreva a hora inicial com o seguinte formato  hora:minutos : ')
+                c = input('Escreva a hora final com o seguinte formato  hora:minutos : ')
                 if a!="FIM":
                     aula["hora inicial"] = b
                     aula["hora final"] = c
                     dia[a] = aula
                     horario[semana] = dia
+                    print('\n')
                 else:
                     horario[semana] = dia
+                    print('\n')
             else:
                 horario[semana] = dia
+                print('\n')
 
 json_object = json.dumps(horario, indent = 4)
 
 with open("horario.json", "w") as outfile: 
     outfile.write(json_object) 
 
-print("horario criado")
+print("Horário criado")
