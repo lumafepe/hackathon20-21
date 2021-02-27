@@ -1,4 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
 import json
 
 with open('horario.json') as json_file: 
@@ -7,7 +9,7 @@ with open('horario.json') as json_file:
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("Diario de Bordo Creator")
         MainWindow.resize(264, 196)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -56,10 +58,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.submit.clicked.connect(self.adiciona)
     def adiciona(self):
-        dia = self.diaDaSemana.toPlainText()
-        cadeira = self.cadeira.toPlainText()
-        hi = self.hI.toPlainText()
-        hf = self.hF.toPlainText()
+        dia = self.diaDaSemana.toPlainText().lower()
+        cadeira = (self.cadeira.toPlainText()).upper()
+        hi = (self.hI.toPlainText()).lower()
+        hf = (self.hF.toPlainText()).lower()
         if data[dia]=="":
             data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
         else:
@@ -71,7 +73,10 @@ class Ui_MainWindow(object):
         json_object = json.dumps(data, indent = 4)
         with open("horario.json", "w") as outfile: 
             outfile.write(json_object) 
-                
+        msg = QMessageBox()
+        msg.setWindowTitle("Sucesso")
+        msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
+        x = msg.exec_()
                 
 
 
