@@ -10,20 +10,21 @@ def disciplinasdodia(dia,hora,minutos):
         dias = data[diadasemana(dia)]
     
         for k in dias:
-            i = dias[k]
+            horas = dias[k]
 
-            a = i['hora final']
-            ah,am = a.split(':')
-            a=int(ah)*60+int(am)
-            b = i['hora inicial']
-            bh,bm = b.split(':')
-            b=int(bh)*60+int(bm)
-
-            if b<hora*60+minutos<a:
-                return str(k)
-                break
-            else:
-                return "NADA"
+            for i in horas:
+                a = i['hora final']
+                ah,am = a.split(':')
+                a=int(ah)*60+int(am)
+                b = i['hora inicial']
+                bh,bm = b.split(':')
+                b=int(bh)*60+int(bm)
+                if b<=hora*60+minutos<=a:
+                    return str(k)
+                    break
+                    
+        #se no ciclo for nao encontrar nenhuma disciplina é porque aquela hora nao tem nada
+        return 'NADA'
     except:
         return "NADA"
 

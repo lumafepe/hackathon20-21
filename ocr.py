@@ -54,7 +54,3 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
     
     # ![](fich) 
     #pandoc -t latex -o x.pdf x.md
-
-
-
-
