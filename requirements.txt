@@ -1,0 +1,6 @@
+logging
+watchdog
+DateTime
+pytesseract
+Pillow
+mdutils
