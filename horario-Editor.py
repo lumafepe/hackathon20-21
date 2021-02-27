@@ -2,7 +2,10 @@
 def concat(l):
     a=""
     for i in l:
-        a+=i+"\n"
+        if l.index(i) == (len(i)-1):
+            a+=i
+        else:
+            a+=i+"\n"
     return a
 #serve para editar os elementos
 def editarelems(diaAEditar):
@@ -10,15 +13,15 @@ def editarelems(diaAEditar):
     a = diaAEditar.split(',')
     b=a.pop(0)
     dia,e,f,g,h = b.split() # separa a 1 por partes
-    a.append(f+" "+g+" "+h) # adiciona a primeira
+    a.insert(0,f+" "+g+" "+h) # adiciona a primeira
     print(concat(a))   # q cadeiras existem
-    ioIn=input("Cadeira a editar(1-{}): ".format(len(a)))#numero da cadeira a editar
+    ioIn=input("Cadeira a editar(1-{}) : ".format(len(a)))#numero da cadeira a editar
     a.pop(int(ioIn)-1)#qual a remover para adicionar uma nova
     cad = input('nova cadeira: ')
     cad = cad.upper()
-    cad = cad + " " + input('nova hora:minutos de inicio: ')
-    cad = cad + " " +input('nova hora:minutos de fim: ')
-    cad=",("+cad+")"
+    cad = cad + " " + input('nova hora:minutos de inicio : ')
+    cad = cad + " " +input('nova hora:minutos de fim : ')
+    cad="("+cad+")"
     a.append(cad)#junta a nova cadeira
     b=""
     for i in a:
@@ -52,7 +55,7 @@ elif oqfazer=="EDITAR DIA":
         cad = cad + " " +input('hora:minutos de fim: ')
         cad=",("+cad+")"
         diaAEditar=diaAEditar+cad
-    b.append(diaAEditar)
+    b.insert(int(ioIn)-1, diaAEditar)
     a=open("Horarios/horario.txt","w")
     a.write(concat(b))
     a.close()
