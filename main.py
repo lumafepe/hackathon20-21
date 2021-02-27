@@ -10,6 +10,14 @@ import datetime
 import horario
 import ocr
 
+#testes para ja!
+a=open("closeapp.dat",'w')
+a.write("0")
+a.close()
+a=open("off.dat",'w')
+a.write("1")
+a.close()
+os.system("python3 switch.py")
 #user
 user = getpass.getuser()
 
@@ -44,12 +52,18 @@ if __name__ == "__main__":
         #nome da nova foto
         ficheirocriado = loader.up(pics)
         # mover para o novo sitio
-        os.system("mv " + pics + f'"{ficheirocriado}"' +" " + pathpasta + cadeira + '/' + a+'-'+b+'-'+c)
+        nome = len(os.listdir(pathpasta + cadeira + '/' + a+'-'+b+'-'+c))
+        if nome>1:
+            nome=str(nome)
+        else:
+            nome = str(nome+1)
+        os.system("mv " + pics + f'"{ficheirocriado}"' +" " + pathpasta + cadeira + '/' + a+'-'+b+'-'+c + '/' + nome + '.png')
         #adicionado ficheiro de texto
         os.system("touch " + pathpasta + cadeira + '/' + a+'-'+b+'-'+c + "/texto.txt")
         #obtem texto
         time.sleep(1)
-        ocr.inseretexto(pathpasta + cadeira + '/' + a+'-'+b+'-'+c + "/" + f'{ficheirocriado}')
+        if ficheirocriado=="ocr.png":
+            ocr.inseretexto(pathpasta + cadeira + '/' + a+'-'+b+'-'+c + "/" + nome + '.png')
 
 
 
