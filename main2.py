@@ -36,27 +36,7 @@ os.system("mkdir -p " + pathpasta)
 #event logger
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
-        
-        #now,datadodia,cadeira = loader.aux()
-
-          #horas a que foi criado
-        now = datetime.datetime.now()
-        datadodia = ""
-        #dia-mes-ano
-        dia,mes,ano=str( now.day),str( now.month),str( now.year)
-        ordem=(data["formato de datas"]).split('-')
-        for i in ordem:
-            if "ano"==i:
-                datadodia+=ano+"-"
-            elif "mes"==i:
-                datadodia+=mes+"-"
-            else:
-                datadodia+=dia+"-"
-        datadodia=datadodia[:-1]
-        #que aula o alno esta a ter
-        #cadeira = horario.faztudo(datetime.datetime.today().weekday(),now.hour,now.minute,hor)
-        cadeira = horario.disciplinasdodia(datetime.datetime.today().weekday(),now.hour,now.minute)
-        
+        now,datadodia,cadeira = loader.aux()
         if cadeira!="NADA":
             base = f"{pathpasta}{cadeira}/{datadodia}"
             print(base)
