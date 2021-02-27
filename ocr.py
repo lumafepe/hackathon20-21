@@ -3,10 +3,16 @@ from PIL import Image
 import os
 from mdutils.mdutils import MdUtils
 from mdutils import Html
+import json
+from getpass import getuser
 
+with open('config.json') as json_file:
+    data = json.load(json_file)
 
-
-
+if data["nome de autor"]=="":
+    user=getuser()
+else:
+    user=data["nome de autor"]
 
 
 def gettext(onde): # devolve texto de uma imagem de algum lado
@@ -32,12 +38,12 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
             ocrt = gettext(onde+'/'+fich)
             
             aula = open (onde+'/Diario_de_bordo.md','a')
-            aula.write("![]("+fich+")")
+            aula.write(f"![]({onde}/{fich})")
             aula.write("\n```"+ocrt+"\n```")
             aula.write("\n--------------------\n")
         else:
             aula = open (onde+'/Diario_de_bordo.md','a')
-            aula.write("![]("+fich+")")
+            aula.write(f"![]({onde}/{fich})")
             aula.write("\n--------------------\n")
         aula.close()
 

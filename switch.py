@@ -41,11 +41,12 @@ class Ui_MainWindow(object):
             os.system(f"kill -SIGINT {pid}")
         
         else:
-            subprocess.call("python main2.py &", shell=True)
+            subprocess.call("python3 main2.py &", shell=True)
 
     def closeEvent(self, event):
         pid = pickle.load( open( "pid", "rb" ) )
-        os.system(f"kill -9 {pid}")
+        #os.system(f"kill -9 {pid}")
+        os.system(f"kill -SIGINT {pid}")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

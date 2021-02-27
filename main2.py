@@ -9,9 +9,10 @@ import datetime
 import horario
 import ocr
 import json
-import subprocess
+import subprocess #
 import pickle
-
+import signal#
+import sys    # 
 
 #user
 user = getuser()
@@ -44,7 +45,7 @@ class MyHandler(FileSystemEventHandler):
         now,datadodia,cadeira = loader.aux()
         if cadeira!="NADA":
             base = f"{pathpasta}{cadeira}/{datadodia}"
-            print(base)
+            #print(base)
             #cria pastas para essa aula
             os.system(f"mkdir -p {base}" )
                 
@@ -52,6 +53,7 @@ class MyHandler(FileSystemEventHandler):
             ficheirocriado = loader.up(pics)
             fc=ficheirocriado
             n=1
+            nomes = ""
             while os.path.exists(base + '/' + fc):
                 nome = fc.split('.')
                 tipo=nome.pop()
@@ -74,7 +76,29 @@ class MyHandler(FileSystemEventHandler):
                     
             ocr.inseretexto(base,fc)
     
+
+
+
+
+
+def handler(sig, frame):
+    print('Transformando para pdf', sig)
+    dis = loader.up(f"{pathpasta}")
+    dia = loader.up(f"{pathpasta}{dis}")
+
+    #print(f"{pathpasta}{dis}/{dia}/") 
+    os.system(f"pandoc -t latex -o {pathpasta}{dis}/{dia}/dbordo.pdf {pathpasta}{dis}/{dia}/Diario_de_bordo.md")
+
+    sys.exit(0)
+
 if __name__ == "__main__":
+    
+    signal.signal(signal.SIGALRM, handler)
+    #signal.alarm(5)# segundos
+
+    signal.signal(signal.SIGINT, handler)
+    #signal.alarm(0)
+    
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, path=pics, recursive=False)
