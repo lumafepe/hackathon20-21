@@ -63,28 +63,35 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
-        hi1,hi2=hi.split(':')
-        hf1,hf2=hf.split(':')
-        # digit = hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit()
-        # validos = 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60
-        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
-            assert()
-            if not dia in data:
-                data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
-            else:
-                dia=data[dia]
-                if not cadeira in dia:
-                    dia[cadeira] =  [{ "hora inicial" : hi,"hora final" :hf}]
+        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) :
+            # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
+            hi1,hi2=hi.split(':')
+            hf1,hf2=hf.split(':')
+            # digit = hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit()
+            # validos = 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60
+            if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
+                assert()
+                if not dia in data:
+                    data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
                 else:
-                    dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
-            json_object = json.dumps(data, indent = 4)
-            with open("horario.json", "w") as outfile: 
-                outfile.write(json_object) 
-            msg = QMessageBox()
-            msg.setWindowTitle("Sucesso")
-            msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
-            x = msg.exec_()
+                    dia=data[dia]
+                    if not cadeira in dia:
+                        dia[cadeira] =  [{ "hora inicial" : hi,"hora final" :hf}]
+                    else:
+                        dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
+                json_object = json.dumps(data, indent = 4)
+                with open("horario.json", "w") as outfile: 
+                    outfile.write(json_object) 
+                msg = QMessageBox()
+                msg.setWindowTitle("Sucesso")
+                msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
+                x = msg.exec_()
+            else:
+                msg = QMessageBox()
+                msg.setWindowTitle("Erro")
+                msg.setText("por favor escreve coisas")
+                msg.setIcon(QMessageBox.Critical)
+                x = msg.exec_()
         else:
             msg = QMessageBox()
             msg.setWindowTitle("Erro")
