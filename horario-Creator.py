@@ -12,12 +12,15 @@ while semana!="fim":
         while a!="FIM":
             a = input('cadeira: ')
             a = a.upper()
-            b = input('hora:minutos de inicio: ')
-            c = input('hora:minutos de fim: ')
-            if a!="FIM":
-                fim+="("+a+" "+b+" "+c+"),"
+            if a != 'FIM' : 
+                b = input('hora:minutos de inicio: ')
+                c = input('hora:minutos de fim: ')
+                if a!="FIM":
+                    fim+="("+a+" "+b+" "+c+"),"
+                else:
+                    fim=(fim[:-1]+"\n")
             else:
-                fim=(fim[:-1]+"\n")
+                fim=(fim[:-1]+'\n')
 a.write(fim)
 a.close()
 print("horario criado")
