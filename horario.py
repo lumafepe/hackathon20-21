@@ -4,22 +4,24 @@
 def faztudo(dia,hora,minuto,horario):
     d1= diadasemana(dia)
     d = separa(d1,horario)
+    print(d1,horario)
     return (removedia(d,hora,minuto))
 
 #Vai ao horário e retira de lá a string que corresponde ao dia pretendido
 def separa (dia,lista):
     resultado = ''
-    while resultado == '':
-        for x in lista:
-            if dia in x:
-                resultado = x[(len(dia)+3):]
-                resultado = resultado.split(',') 
+    for x in lista:
+        if dia in x:
+            resultado = x[(len(dia)+3):]#FIXME
+            resultado = resultado.split(',') 
+            break
     return resultado
 
 #Vai ao horario para um dado dia e verifica a aula que esta a ter a uma dada hora
 def removedia(dia,hora,minutos):
-    if (dia == []) or (dia == [""]) or (dia[0].isspace() == True):
-        return 'OUTRO'
+    #if (dia == []) or (dia == [""]) or (dia[0].isspace()):
+    if (dia == []) or (dia == [""]):
+        return 'NADA'
     else:
         for i in dia:
             i = i[1:(len(i) - 1)]
@@ -32,7 +34,7 @@ def removedia(dia,hora,minutos):
             ha = hora*60 + minutos
             if (ha>=hi) and (ha<=hf):
                 return cadeira
-    return 'OUTRO'
+    return 'NADA'
 
 def diadasemana (num):
     if num == 0:
