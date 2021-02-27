@@ -62,21 +62,28 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if data[dia]=="":
-            data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
-        else:
-            dia=data[dia]
-            if not cadeira in dia:
-                dia[cadeira] =  [{ "hora inicial" : hi,"hora final" :hf}]
+        if dia=="" or cadeira=="" or hi=="" or hf=="":
+            if data[dia]=="":
+                data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
             else:
-                dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
-        json_object = json.dumps(data, indent = 4)
-        with open("horario.json", "w") as outfile: 
-            outfile.write(json_object) 
-        msg = QMessageBox()
-        msg.setWindowTitle("Sucesso")
-        msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
-        x = msg.exec_()
+                dia=data[dia]
+                if not cadeira in dia:
+                    dia[cadeira] =  [{ "hora inicial" : hi,"hora final" :hf}]
+                else:
+                    dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
+            json_object = json.dumps(data, indent = 4)
+            with open("horario.json", "w") as outfile: 
+                outfile.write(json_object) 
+            msg = QMessageBox()
+            msg.setWindowTitle("Sucesso")
+            msg.setText("AULA ADICIONADA COM SUCESSO!!!!!")
+            x = msg.exec_()
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle("Deixa de ser burro")
+            msg.setText("pls da-te ao trabalho de escrever cenas fogo")
+            x = msg.exec_()
+
                 
 
 
