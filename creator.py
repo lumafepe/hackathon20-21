@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if dia=="" or cadeira=="" or hi=="" or hf=="":
+        if not (dia=="" or cadeira=="" or hi=="" or hf==""):
             if data[dia]=="":
                 data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
             else:
