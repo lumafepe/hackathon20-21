@@ -2,8 +2,7 @@ import json
 with open('horario.json') as json_file: 
     data = json.load(json_file) 
 
-with open('config.json') as json_file: 
-    diretorios = json.load(json_file) 
+
 
 def disciplinasdodia(dia,hora,minutos):
     
@@ -24,9 +23,9 @@ def disciplinasdodia(dia,hora,minutos):
                 return str(k)
                 break
             else:
-                return diretorios["nome de diretorio se nao houver uma aula"]
+                return "NADA"
     except:
-        return diretorios["nome de diretorio se nao houver o dia no horario"]
+        return "NADA"
 
 
 

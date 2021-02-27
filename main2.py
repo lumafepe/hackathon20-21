@@ -1,8 +1,7 @@
-import getpass
-import sys
-import time
+#!/usr/bin/env python3
+from getpass import getuser
+from time import sleep
 import os
-import logging
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import loader
@@ -13,7 +12,7 @@ import json
 
 
 #user
-user = getpass.getuser()
+user = getuser()
 
 #configs
 with open('config.json') as json_file: 
@@ -79,7 +78,7 @@ class MyHandler(FileSystemEventHandler):
             # adicionado ficheiro de texto
 
             # obtem texto
-            time.sleep(1)
+            sleep(1)
                     
             ocr.inseretexto(base,ficheirocriado)
     
@@ -91,7 +90,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(1)
+            sleep(1)
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
