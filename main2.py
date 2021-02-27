@@ -9,7 +9,7 @@ import loader
 import datetime
 import horario
 import ocr
-
+import json
 
 
 #user
@@ -26,9 +26,9 @@ pathpasta = f"/home/{user}/Documents/aulas/"
 os.system("mkdir -p " + pathpasta)
 
 #horario em string
-a = open('Horarios/horario.txt', 'r')
-hor = (a.read()).split('\n') # horarios
-a.close()
+#a = open('Horarios/horario.txt', 'r')
+#hor = (a.read()).split('\n') # horarios
+#a.close()
 
 #event logger
 class MyHandler(FileSystemEventHandler):
@@ -38,9 +38,10 @@ class MyHandler(FileSystemEventHandler):
                 
         a,b,c=str( now.day),str( now.month),str( now.year)
         #que aula o alno esta a ter
-        cadeira = horario.faztudo(datetime.datetime.today().weekday(),now.hour,now.minute,hor)
-                
-        base = f"{pathpasta}{cadeira}/{a}-{b}-{b}"
+        #cadeira = horario.faztudo(datetime.datetime.today().weekday(),now.hour,now.minute,hor)
+        cadeira = horario.disciplinasdodia(datetime.datetime.today().weekday(),now.hour,now.minute)
+
+        base = f"{pathpasta}{cadeira}/{a}-{b}-{c}"
         print(base)
         #cria pastas para essa aula
         os.system(f"mkdir -p {base}" )
