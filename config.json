@@ -7,7 +7,9 @@
 
     "exemplo de nome:(default)":"aulas/",
     "nome da pasta onde guardar":"aulas/",
-    
+
     "formato da data:(default)":"dia-mes-ano",
-    "formato de datas":"dia-mes-ano"
+    "formato de datas":"dia-mes-ano",
+
+    "nome de autor":""
 }
