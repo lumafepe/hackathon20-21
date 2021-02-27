@@ -1,0 +1,84 @@
+{
+    "segunda" : {
+        "PI" : {
+            "hora inicial" : "8:00",
+            "hora final" : "10:00"
+        },
+        "SC" : {
+            "hora inicial" : "10:00",
+            "hora final" : "12:00"
+        },
+        "LOGICA" : {
+            "hora inicial" : "14:00",
+            "hora final" : "16:00"
+        },
+        "ANALISE" : {
+            "hora inicial" : "16:00",
+            "hora final" : "18:00"
+        } },
+    "terca" : {
+        "SC" : {
+            "hora inicial" : "9:00",
+            "hora final" : "10:00"
+        },
+        "LOGICA" : {
+            "hora inicial" : "10:00",
+            "hora final" : "11:00"
+        },
+        "ANALISE" : {
+            "hora inicial" : "11:00",
+            "hora final" : "12:00"
+        },
+        "PI" : {
+            "hora inicial" : "14:00",
+            "hora final" : "15:00"
+        },
+        "TFM" : {
+            "hora inicial" : "15:00",
+            "hora final" : "16:00"
+        } },
+    "quarta" : {
+        "TFM" : {
+            "hora inicial" : "15:30",
+            "hora final" : "16:30"
+        }
+    },
+    "quinta" : {
+        "SC" : {
+            "hora inicial" : "9:00",
+            "hora final" : "10:00"
+        },
+        "LOGICA" : {
+            "hora inicial" : "10:00",
+            "hora final" : "11:00"
+        },
+        "ANALISE" : {
+            "hora inicial" : "11:00",
+            "hora final" : "12:00"
+        },
+        "PI" : {
+            "hora inicial" : "14:00",
+            "hora final" : "15:00"
+        },
+        "TFM" : {
+            "hora inicial" : "15:00",
+            "hora final" : "16:00"
+        } },
+    "sexta" : {
+        "PI" : {
+            "hora inicial" : "8:00",
+            "hora final" : "10:00"
+        },
+        "LI" : {
+            "hora inicial" : "10:00",
+            "hora final" : "12:00"
+        }
+    },
+    "sabado" : {
+        "TREINO" : {
+            "hora inicial" : "10:00",
+            "horafinal" : "13:00"
+        }
+    },
+    "domingo" : {}
+}
