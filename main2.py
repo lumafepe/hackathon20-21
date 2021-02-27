@@ -15,12 +15,20 @@ import json
 #user
 user = getpass.getuser()
 
-# defenir diretorio das imagens
-pics = f"/home/{user}/Pictures/"  
-
-pics = f"/home/{user}/Pictures/"
-#diretorio para guardar as aulas
-pathpasta = f"/home/{user}/Documents/aulas/"
+#configs
+with open('config.json') as json_file: 
+    data = json.load(json_file)
+# defenir diretorio default de entrada
+if data["onde As Imagens Vao Parar"]=="":
+    pics = f"/home/{user}/Pictures/"
+else:
+    pics = data["onde As Imagens Vao Parar"] 
+#diretorio default para guardar
+if data["onde colocar as imagens"]=="":
+    pathpasta = f"/home/{user}/Documents/" 
+else:
+    pathpasta = data["onde colocar as imagens"]
+pathpasta+=data["nome da pasta onde guardar"]
 
 #cria a pasta da aulas se nao existir
 os.system("mkdir -p " + pathpasta)
@@ -35,13 +43,24 @@ class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         #horas a que foi criado
         now = datetime.datetime.now()
-                
-        a,b,c=str( now.day),str( now.month),str( now.year)
+        datadodia = ""
+        dia,mes,ano=str( now.day),str( now.month),str( now.year)
+        if data["formato de datas"]!="":
+            ordem=(data["formato de datas"]).split('-')
+            for i in ordem:
+                if "ano"==i:
+                    datadodia+=ano+"-"
+                elif "mes"==i:
+                    datadodia+=mes+"-"
+                else:
+                    datadodia+=dia+"-"
+        datadodia=datadodia[:-1]
+
         #que aula o alno esta a ter
         #cadeira = horario.faztudo(datetime.datetime.today().weekday(),now.hour,now.minute,hor)
         cadeira = horario.disciplinasdodia(datetime.datetime.today().weekday(),now.hour,now.minute)
 
-        base = f"{pathpasta}{cadeira}/{a}-{b}-{c}"
+        base = f"{pathpasta}{cadeira}/{datadodia}"
         print(base)
         #cria pastas para essa aula
         os.system(f"mkdir -p {base}" )
