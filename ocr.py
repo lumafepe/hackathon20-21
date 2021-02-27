@@ -24,34 +24,27 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
 
 #----------------------------------------------------------
 # em teste
-    if os.path.exists(onde+'/Resumo_da_aula.md'):
+    if os.path.exists(onde+'/Diario_de_bordo.md'):
         # fich "ocr.pdf"
                 
         if "ocr" in fich:
 
             ocrt = gettext(onde+'/'+fich)
             
-            aula = open (onde+'/Resumo_da_aula.md','a')
+            aula = open (onde+'/Diario_de_bordo.md','a')
             aula.write("![]("+fich+")")
             aula.write("\n```"+ocrt+"\n```")
-            aula.write("\n----------------------------------------------------------------------------------\n")
+            aula.write("\n--------------------\n")
         else:
-            aula = open (onde+'/Resumo_da_aula.md','a')
+            aula = open (onde+'/Diario_de_bordo.md','a')
             aula.write("![]("+fich+")")
-            aula.write("\n----------------------------------------------------------------------------------\n")
-            print("imagem")
-    else :
-        if "ocr" in fich:
+            aula.write("\n--------------------\n")
+        aula.close()
 
-            ocrt = gettext(onde+'/'+fich)
-            
-            aula = open (onde+'/Resumo_da_aula.md','w')
-            aula.write(ocrt+"\n\n----------------------------------------------------------------------------------\n")
-        else:
-            aula = open (onde+'/Resumo_da_aula.md','w')
-            aula.write("![]("+fich+")\n\n----------------------------------------------------------------------------------\n")
-            print("imagem")
-    aula.close()
-    
-    # ![](fich) 
+ 
+    else:
+        aula = open (onde+'/Diario_de_bordo.md','a')
+        aula.write('---\ntitle: \"Diário de bordo\"\nauthor: João Novais \ndate: March 22, 2005\ngeometry: margin=2cm\noutput: pdf_document\n---\n')
+        aula.close()
+        inseretexto(onde,fich)
     #pandoc -t latex -o x.pdf x.md
