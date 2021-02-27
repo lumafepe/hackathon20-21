@@ -9,7 +9,7 @@ import datetime
 import horario
 import ocr
 import json
-
+import subprocess
 
 #user
 user = getuser()
@@ -77,13 +77,17 @@ class MyHandler(FileSystemEventHandler):
                 fc = nomes+f"-{n}."+tipo
                 n+=1
             # mover para o novo sitio
-            os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base +'/'+fc)
+            #os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base +'/'+fc)
+            pathinput  = os.path.join( pics,ficheirocriado)
+            pathoutput = os.path.join( base,fc)
+
+            subprocess.run(["mv",pathinput,pathoutput])
             # adicionado ficheiro de texto
 
             # obtem texto
             sleep(1)
                     
-            ocr.inseretexto(base,ficheirocriado)
+            ocr.inseretexto(base,fc)
     
 if __name__ == "__main__":
     event_handler = MyHandler()

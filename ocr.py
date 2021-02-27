@@ -32,7 +32,8 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
             ocrt = gettext(onde+'/'+fich)
             
             aula = open (onde+'/Resumo_da_aula.md','a')
-            aula.write(ocrt)
+            aula.write("![]("+fich+")")
+            aula.write("\n```"+ocrt+"\n```")
             aula.write("\n----------------------------------------------------------------------------------\n")
         else:
             aula = open (onde+'/Resumo_da_aula.md','a')
