@@ -6,5 +6,7 @@
     "exemplo de nome:(default)":"aulas/",
     "nome da pasta onde guardar":"aulas/",
     "formato da data:(default)":"dia-mes-ano",
-    "formato de datas":"dia-mes-ano"
+    "formato de datas":"dia-mes-ano",
+    "nome de diretorio se nao houver uma aula":"ForaDeAulas",
+    "nome de diretorio se nao houver o dia no horario":"DiasNaoNoHorario"
 }
