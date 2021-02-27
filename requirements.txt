@@ -2,3 +2,4 @@ watchdog
 pytesseract
 Pillow
 mdutils
+PyQt5
