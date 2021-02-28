@@ -2,8 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 import subprocess
 import pickle
-
-
+pickle.dump(0,open("pid", "wb"))
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
