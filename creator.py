@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
                     else:
                         dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
                 json_object = json.dumps(data, indent = 4)
-                with open("horario.json", "w") as outfile: 
+                with open("/home/dbordo/horario.json", "w") as outfile: 
                     outfile.write(json_object) 
                 msg = QMessageBox()
                 msg.setWindowTitle("Sucesso")
