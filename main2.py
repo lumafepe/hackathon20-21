@@ -16,7 +16,7 @@ import sys    #
 
 #FAZER DEPOISSS RECEBER ARGUMENTOS
 #PERGUNTAR PELO COMPRIMENTO
-#pri = sys.argv[1]
+oqueestaaestudar = sys.argv[1]
 
 #user
 user = getuser()
@@ -47,6 +47,8 @@ pickle.dump(pid,open("pid", "wb"))
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         now,datadodia,cadeira = loader.aux()
+        if oqueestaaestudar!=data["nome base para usar o horario"]:
+            cadeira = oqueestaaestudar
         if cadeira!="NADA":
             base = f"{pathpasta}{cadeira}/{datadodia}"
             #print(base)
