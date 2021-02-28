@@ -2,7 +2,22 @@ import json
 with open('horario.json') as json_file: 
     data = json.load(json_file) 
 
+def fimaula(dia,hora,minutos):
+    dias = data[diadasemana(dia)]
 
+    for k in dias:
+        horas = dias[k]
+
+        for i in horas:
+            a = i['hora final']
+            ah,am = a.split(':')
+            a=int(ah)*60+int(am)
+            b = i['hora inicial']
+            bh,bm = b.split(':')
+            b=int(bh)*60+int(bm)
+            if b<=hora*60+minutos<=a:
+                return a
+                break
 
 def disciplinasdodia(dia,hora,minutos):
     
