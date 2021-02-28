@@ -14,7 +14,7 @@ import pickle
 import signal#
 import sys    # 
 
-oqueestaaestudar = sys.argv[1]
+oqueestaaestudar = sys.argv
 
 
 
@@ -47,8 +47,15 @@ pickle.dump(pid,open("pid", "wb"))
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         now,datadodia,cadeira = loader.aux()
-        if oqueestaaestudar!=data["nome base para usar o horario"]:
-            cadeira = oqueestaaestudar
+        
+        #if oqueestaaestudar!=data["nome base para usar o horario"]:
+         #   cadeira = oqueestaaestudar
+        
+        if len(oqueestaaestudar) > 1:
+            cadeira = oqueestaaestudar[1]
+        
+        
+
         if cadeira!="NADA":
             base = f"{pathpasta}{cadeira}/{datadodia}"
             #print(base)

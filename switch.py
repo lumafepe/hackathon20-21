@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
             os.system(f"kill -s INT {pid} &")
         
         else:
-            subprocess.call("python3 -i main.py aulas &", shell=True)
+            subprocess.call("python3 -i main.py &", shell=True)
 
     def closeEvent(self, event):
         pid = pickle.load( open( "pid", "rb" ) )

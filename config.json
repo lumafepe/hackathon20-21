@@ -11,7 +11,6 @@
     "formato da data:(default)":"dia-mes-ano",
     "formato de datas":"dia-mes-ano",
 
-    "nome de autor":"",
+    "nome de autor":""
 
-    "nome base para usar o horario":"aulas"
 }
