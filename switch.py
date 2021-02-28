@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 import subprocess
@@ -41,7 +42,7 @@ class Ui_MainWindow(object):
             os.system(f"kill -s INT {pid} &")
         
         else:
-            subprocess.call("python3 -i main2.py &", shell=True)
+            subprocess.call("python3 -i main.py aulas &", shell=True)
 
     def closeEvent(self, event):
         pid = pickle.load( open( "pid", "rb" ) )

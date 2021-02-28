@@ -1,5 +1,7 @@
-watchdog
-pytesseract
-Pillow
-mdutils
+whatchdog
 PyQt5
+datetime
+pytesseract
+pillow
+mdutils
+getpass
