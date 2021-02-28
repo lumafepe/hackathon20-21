@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 import json
 
-with open('horario.json') as json_file: 
+with open('/home/dbordo/horario.json') as json_file: 
     data = json.load(json_file) 
 
 
