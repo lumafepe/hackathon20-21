@@ -9,10 +9,9 @@ import datetime
 import horario
 import ocr
 import json
-import subprocess #
-import pickle
-import signal#
-import sys    # 
+import subprocess 
+import signal    
+import sys    
 
 oqueestaaestudar = sys.argv
 
@@ -41,7 +40,7 @@ pathpasta+=data["nome da pasta onde guardar"]
 os.system("mkdir -p " + pathpasta)
 
 pid = (os.getpid())
-pickle.dump(pid,open("pid", "wb"))
+
 
 #event logger
 class MyHandler(FileSystemEventHandler):
