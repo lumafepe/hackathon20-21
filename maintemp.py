@@ -13,7 +13,6 @@ import subprocess #
 import pickle
 import signal#
 import sys    # 
-import mdpdf
 
 #user
 user = getuser()
