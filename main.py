@@ -39,7 +39,7 @@ pathpasta+=data["nome da pasta onde guardar"]
 #cria a pasta da aulas se nao existir
 os.system("mkdir -p " + pathpasta)
 
-pid = (os.getpid())
+
 
 
 #event logger
@@ -69,11 +69,12 @@ class MyHandler(FileSystemEventHandler):
             while os.path.exists(base + '/' + fc):
                 nome = fc.split('.')
                 tipo=nome.pop()
+                nome1=nome
                 nome=""
                 for i in nome:
                     nomes+=i+"."
                 nomes=nomes[:-1]
-                fc = nomes+f"-{n}."+tipo
+                fc = nome1+f"-{n}."+tipo
                 n+=1
             if len(oqueestaaestudar)==1:#data["nome base para usar o horario"]:
                 signal.alarm((horario.fimaula(datetime.datetime.today().weekday(),now.hour,now.minute))*60 - ((now.hour*60+now.minute)*60+now.second))
@@ -116,11 +117,26 @@ def handler(sig, frame):
     sys.exit(0)
 
 
+def handler2(sig, frame):
+    now,datadodia,cadeira = loader.aux()
+    if len(oqueestaaestudar) >1: #!= data["nome base para usar o horario"]:
+        cadeira = oqueestaaestudar[1]
+    if cadeira == 'NADA':
+        print("nao tens nenhuma cadeira")
+    else:
 
+        print('a passar para pdf/html', sig)
+        dis = loader.up(f"{pathpasta}")
+        dia = loader.up(f"{pathpasta}{dis}")
+
+        print(f"{pathpasta}{dis}/{dia}/")
+        os.system(f"pandoc -t latex -o {pathpasta}{dis}/{dia}/dbordo.pdf {pathpasta}{dis}/{dia}/Diario_de_bordo.md")
+        os.system(f"pandoc {pathpasta}{dis}/{dia}/Diario_de_bordo.md -V fontsize=12pt -V geometry:margin=1in -o {pathpasta}{dis}/{dia}/dbordo.html")
+    
 
 if __name__ == "__main__":
     
-    signal.signal(signal.SIGALRM, handler)
+    signal.signal(signal.SIGALRM, handler2)
     #signal.alarm(5)# segundos
 
     signal.signal(signal.SIGINT, handler)
