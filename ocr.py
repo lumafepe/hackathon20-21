@@ -1,3 +1,4 @@
+import datetime
 import pytesseract
 from PIL import Image
 import os
@@ -16,6 +17,7 @@ else:
 
 
 def gettext(onde): # devolve texto de uma imagem de algum lado
+    
     return pytesseract.image_to_string(Image.open(onde),lang = 'por+eng')
 
 
@@ -27,9 +29,6 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
     
     #print(onde,fich)
 
-
-#----------------------------------------------------------
-# em teste
     if os.path.exists(onde+'/Diario_de_bordo.md'):
         # fich "ocr.pdf"
                 
@@ -38,19 +37,23 @@ def inseretexto(onde,fich): # dado o diretorio da pasta adiciona ao texto.txt
             ocrt = gettext(onde+'/'+fich)
             
             aula = open (onde+'/Diario_de_bordo.md','a')
-            aula.write(f"![]({onde}/{fich})")
-            aula.write("\n```"+ocrt+"\n```")
-            aula.write("\n--------------------\n")
+            aula.write(f"\n![]({onde}/{fich})\n")
+            aula.write("\n```\n"+ocrt+"\n```\n")
+            #aula.write("\n---\n")
         else:
             aula = open (onde+'/Diario_de_bordo.md','a')
-            aula.write(f"![]({onde}/{fich})")
-            aula.write("\n--------------------\n")
+            aula.write(f"\n![]({onde}/{fich})\n")
+            #aula.write("\n---\n")
         aula.close()
 
  
     else:
         aula = open (onde+'/Diario_de_bordo.md','a')
-        aula.write('---\ntitle: \"Diário de bordo\"\nauthor: João Novais \ndate: March 22, 2005\ngeometry: margin=2cm\noutput: pdf_document\n---\n')
+        x = datetime.datetime.now()
+        ano = x.year
+        mes = x.strftime("%B")
+        dia = x.day
+        aula.write(f'---\ntitle: \"Diário de bordo\"\nauthor: {user} \ndate: {mes} {dia}, {ano}\ngeometry: margin=2cm\noutput: pdf_document\nfontsize: 100pt\n---\n')
         aula.close()
         inseretexto(onde,fich)
     #pandoc -t latex -o x.pdf x.md

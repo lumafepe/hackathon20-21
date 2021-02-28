@@ -14,6 +14,10 @@ import pickle
 import signal#
 import sys    # 
 
+#FAZER DEPOISSS RECEBER ARGUMENTOS
+#PERGUNTAR PELO COMPRIMENTO
+#pri = sys.argv[1]
+
 #user
 user = getuser()
 
@@ -69,6 +73,7 @@ class MyHandler(FileSystemEventHandler):
 
             # mover para o novo sitio
             #os.system("mv " + pics + f'"{ficheirocriado}"' +" " + base +'/'+fc)
+            sleep(1)
             pathinput  = os.path.join( pics,ficheirocriado)
             pathoutput = os.path.join( base,fc)
 
@@ -83,14 +88,23 @@ class MyHandler(FileSystemEventHandler):
 
 
 def handler(sig, frame):
-    print('Transformando para pdf', sig)
-    dis = loader.up(f"{pathpasta}")
-    dia = loader.up(f"{pathpasta}{dis}")
+    now,datadodia,cadeira = loader.aux()
+    if cadeira == 'NADA':
+        print("nao tens nenhuma cadeira")
+    else:
 
-    print(f"{pathpasta}{dis}/{dia}/")
-    os.system(f"pandoc -t latex -o {pathpasta}{dis}/{dia}/dbordo.pdf {pathpasta}{dis}/{dia}/Diario_de_bordo.md")
-    os.system(f"pandoc {pathpasta}{dis}/{dia}/Diario_de_bordo.md -V fontsize=12pt -V geometry:margin=1in -o {pathpasta}{dis}/{dia}/dbordo.html")
+        print('a passar para pdf/html', sig)
+        dis = loader.up(f"{pathpasta}")
+        dia = loader.up(f"{pathpasta}{dis}")
+
+        print(f"{pathpasta}{dis}/{dia}/")
+        os.system(f"pandoc -t latex -o {pathpasta}{dis}/{dia}/dbordo.pdf {pathpasta}{dis}/{dia}/Diario_de_bordo.md")
+        os.system(f"pandoc {pathpasta}{dis}/{dia}/Diario_de_bordo.md -V fontsize=12pt -V geometry:margin=1in -o {pathpasta}{dis}/{dia}/dbordo.html")
+    
     sys.exit(0)
+
+
+
 
 if __name__ == "__main__":
     
