@@ -4,7 +4,7 @@ from time import sleep
 import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-import loader2
+import loader
 import datetime
 import horario
 import ocr
