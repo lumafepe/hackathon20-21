@@ -12,7 +12,33 @@ import json
 import subprocess 
 import signal    
 import sys    
+import getopt
 
+#FAZER DEPOISSS RECEBER ARGUMENTOS
+#PERGUNTAR PELO COMPRIMENTO
+#pri = sys.argv[1]
+oqueestaaestudar = sys.argv
+
+opcs,args = (oqueestaaestudar[1:],"h")
+if "-h" in opcs:
+    print("""
+    ********************* Diário de Bordo ********************
+            
+            configurar paths,autor  : /home/dbordo/config.json
+            configurar horarios     : /home/dbordo/horario.json
+            
+            opções: -h --help
+                    -c --create   , ajuda a inserir horários
+
+            Se no nome do fichiero tiver expressão regular 'ocr'
+            vai ser adicionado a imagem e o texto
+
+            """)
+    quit()
+
+if "-c" in opcs:
+    os.system("dbordo_creator")
+    quit()
 oqueestaaestudar = sys.argv
 
 
