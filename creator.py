@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
@@ -63,13 +64,13 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and (':' in hi) and (':' in hf) :
+        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and (':' in hi) and (':' in hf) and (dia == 'segunda' or 'terça' or 'quarta' or 'quinta' or 'sexta' or 'sabado' or 'domingo'):
             # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
             hi1,hi2=hi.split(':')
             hf1,hf2=hf.split(':')
             # digit = hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit()
             # validos = 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60
-            if len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60:
+            if len(hi.split(':'))==2==len(hf.split(':')) and hi1.isdigit() and hi2.isdigit() and hf1.isdigit() and hf2.isdigit() and 0<=int(hi1)<24 and 0<=int(hf1)<24 and 0<=int(hi2)<60 and 0<=int(hf2)<60 :
                 if not dia in data:
                     data[dia] = { cadeira : [{ "hora inicial" : hi,"hora final" :hf}] }
                 else:
@@ -95,6 +96,12 @@ class Ui_MainWindow(object):
             msg = QMessageBox()
             msg.setWindowTitle("Erro")
             msg.setText("Os campos não podem estar em branco")
+            msg.setIcon(QMessageBox.Critical)
+            x = msg.exec_()
+        elif not (dia == 'segunda' or 'terça' or 'quarta' or 'quinta' or 'sexta' or 'sabado' or 'domingo'):
+            msg = QMessageBox()
+            msg.setWindowTitle("Erro")
+            msg.setText("Escreve um dia da semana valido")
             msg.setIcon(QMessageBox.Critical)
             x = msg.exec_()
         else:
