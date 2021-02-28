@@ -101,7 +101,7 @@ class MyHandler(FileSystemEventHandler):
 def handler(sig, frame):
     now,datadodia,cadeira = loader.aux()
     if oqueestaaestudar!=data["nome base para usar o horario"]:
-            cadeira = oqueestaaestudar
+        cadeira = oqueestaaestudar
     if cadeira == 'NADA':
         print("nao tens nenhuma cadeira")
     else:
