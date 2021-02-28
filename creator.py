@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         cadeira = (self.cadeira.toPlainText()).upper()
         hi = (self.hI.toPlainText()).lower()
         hf = (self.hF.toPlainText()).lower()
-        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and (':' in hi) and (':' in hf) and (dia == 'segunda' or 'terça' or 'quarta' or 'quinta' or 'sexta' or 'sabado' or 'domingo'):
+        if (not (dia=="" or cadeira=="" or hi=="" or hf=="")) and (':' in hi) and (':' in hf) and (dia == 'segunda' or dia =='terça' or dia =='quarta' or dia =='quinta' or dia =='sexta' or dia =='sabado' or dia =='domingo'):
             # so tem um: =len(hi.split(':'))==2==len(hf.split(':'))
             hi1,hi2=hi.split(':')
             hf1,hf2=hf.split(':')
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
             msg.setText("Os campos não podem estar em branco")
             msg.setIcon(QMessageBox.Critical)
             x = msg.exec_()
-        elif not (dia == 'segunda' or 'terça' or 'quarta' or 'quinta' or 'sexta' or 'sabado' or 'domingo'):
+        elif not (dia == 'segunda' or dia =='terça' or dia =='quarta' or dia =='quinta' or dia =='sexta' or dia =='sabado' or dia =='domingo'):
             msg = QMessageBox()
             msg.setWindowTitle("Erro")
             msg.setText("Escreve um dia da semana valido")
