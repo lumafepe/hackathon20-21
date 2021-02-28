@@ -38,15 +38,16 @@ class Ui_MainWindow(object):
     def faz(self):
         if (self.Slider.value()==0):
             pid = pickle.load( open( "pid", "rb" ) )
-            os.system(f"kill -SIGINT {pid}")
+            print(pid)
+            os.system(f"kill -s INT {pid} &")
         
         else:
-            subprocess.call("python3 main2.py &", shell=True)
+            subprocess.call("python3 -i main2.py &", shell=True)
 
     def closeEvent(self, event):
         pid = pickle.load( open( "pid", "rb" ) )
         #os.system(f"kill -9 {pid}")
-        os.system(f"kill -SIGINT {pid}")
+        os.system(f"kill -s INT {pid} &")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
