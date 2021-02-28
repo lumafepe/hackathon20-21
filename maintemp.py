@@ -44,7 +44,7 @@ pickle.dump(pid,open("pid", "wb"))
 #event logger
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
-        now,datadodia,cadeira = loader2.aux()
+        now,datadodia,cadeira = loader.aux()
         cadeira=x
         base = f"{pathpasta}{cadeira}/{datadodia}"
         #print(base)
