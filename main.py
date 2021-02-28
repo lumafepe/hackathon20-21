@@ -76,7 +76,7 @@ class MyHandler(FileSystemEventHandler):
                 nomes=nomes[:-1]
                 fc = nomes+f"-{n}."+tipo
                 n+=1
-            if oqueestaaestudar==data["nome base para usar o horario"]:
+            if len(oqueestaaestudar)==1:#data["nome base para usar o horario"]:
                 signal.alarm((horario.fimaula(datetime.datetime.today().weekday(),now.hour,now.minute))*60 - ((now.hour*60+now.minute)*60+now.second))
             
 
@@ -100,8 +100,8 @@ class MyHandler(FileSystemEventHandler):
 
 def handler(sig, frame):
     now,datadodia,cadeira = loader.aux()
-    if oqueestaaestudar!=data["nome base para usar o horario"]:
-        cadeira = oqueestaaestudar
+    if len(oqueestaaestudar) >1: #!= data["nome base para usar o horario"]:
+        cadeira = oqueestaaestudar[1]
     if cadeira == 'NADA':
         print("nao tens nenhuma cadeira")
     else:
