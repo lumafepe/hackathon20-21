@@ -13,6 +13,7 @@ import subprocess #
 import pickle
 import signal#
 import sys    # 
+import mdpdf
 
 #user
 user = getuser()
@@ -36,8 +37,8 @@ pathpasta+=data["nome da pasta onde guardar"]
 #cria a pasta da aulas se nao existir
 os.system("mkdir -p " + pathpasta)
 
-pid = str(os.getpid())
-pickle.dump(pid,open("pid.txt", "wb"))
+pid = (os.getpid())
+pickle.dump(pid,open("pid", "wb"))
 
 #event logger
 class MyHandler(FileSystemEventHandler):
@@ -87,9 +88,9 @@ def handler(sig, frame):
     dis = loader.up(f"{pathpasta}")
     dia = loader.up(f"{pathpasta}{dis}")
 
-    #print(f"{pathpasta}{dis}/{dia}/") 
+    print(f"{pathpasta}{dis}/{dia}/")
     os.system(f"pandoc -t latex -o {pathpasta}{dis}/{dia}/dbordo.pdf {pathpasta}{dis}/{dia}/Diario_de_bordo.md")
-
+    os.system(f"pandoc {pathpasta}{dis}/{dia}/Diario_de_bordo.md -V fontsize=12pt -V geometry:margin=1in -o {pathpasta}{dis}/{dia}/dbordo.html")
     sys.exit(0)
 
 if __name__ == "__main__":
