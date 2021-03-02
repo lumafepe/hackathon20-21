@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from getpass import getuser
+user = getuser()
 
 import json
 
-with open('/home/dbordo/horario.json') as json_file: 
+with open(f'/home/{user}/dbordo/horario.json') as json_file: 
     data = json.load(json_file) 
 
 
@@ -80,7 +82,7 @@ class Ui_MainWindow(object):
                     else:
                         dia[cadeira].append({ "hora inicial" : hi,"hora final" :hf})
                 json_object = json.dumps(data, indent = 4)
-                with open("/home/dbordo/horario.json", "w") as outfile: 
+                with open(f"/home/{user}/dbordo/horario.json", "w") as outfile: 
                     outfile.write(json_object) 
                 msg = QMessageBox()
                 msg.setWindowTitle("Sucesso")
@@ -98,7 +100,7 @@ class Ui_MainWindow(object):
             msg.setText("Os campos não podem estar em branco")
             msg.setIcon(QMessageBox.Critical)
             x = msg.exec_()
-        elif not (dia == 'segunda' or dia =='terça' or dia =='quarta' or dia =='quinta' or dia =='sexta' or dia =='sabado' or dia =='domingo'):
+        elif not (dia == 'segunda' or dia =='terca' or dia =='quarta' or dia =='quinta' or dia =='sexta' or dia =='sabado' or dia =='domingo'):
             msg = QMessageBox()
             msg.setWindowTitle("Erro")
             msg.setText("Escreve um dia da semana valido")

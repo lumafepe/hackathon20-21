@@ -19,14 +19,15 @@ import getopt
 #PERGUNTAR PELO COMPRIMENTO
 #pri = sys.argv[1]
 oqueestaaestudar = sys.argv
+user = getuser()
 
 opcs,args = (oqueestaaestudar[1:],"h")
 if "-h" in opcs:
-    print("""
+    print(f"""
     ********************* Diário de Bordo ********************
             
-            configurar paths,autor  : /home/dbordo/config.json
-            configurar horarios     : /home/dbordo/horario.json
+            configurar paths,autor  : /home/{user}/dbordo/config.json
+            configurar horarios     : /home/{user}/dbordo/horario.json
             
             opções: -h --help
                     -c --create   , ajuda a inserir horários
@@ -41,11 +42,10 @@ if "-c" in opcs:
     os.system("dbordo_creator")
     quit()
 #user
-user = getuser()
 
 
 #configs
-with open('/home/dbordo/config.json') as json_file: 
+with open(f'/home/{user}/dbordo/config.json') as json_file: 
     data = json.load(json_file)
 # defenir diretorio default de entrada
 if data["onde As Imagens Vao Parar"]=="":
@@ -166,7 +166,7 @@ def up(path):
     sorted_filename_list = [ os.path.basename(i) for i in time_sorted_list]
     return sorted_filename_list[-1]#último elemtnos da lista, ficheiro mais recente
 
-with open('/home/dbordo/config.json') as json_file: 
+with open(f'/home/{user}/dbordo/config.json') as json_file: 
     data3 = json.load(json_file)
 
 def aux ():
@@ -196,7 +196,7 @@ def aux ():
 
 
 
-with open('/home/dbordo/horario.json') as json_file: 
+with open(f'/home/{user}/dbordo/horario.json') as json_file: 
     data4 = json.load(json_file) 
 
 def fimaula(dia,hora,minutos):
@@ -264,7 +264,7 @@ def diadasemana (num):
 
 
 
-with open('/home/dbordo/config.json') as json_file:
+with open(f'/home/{user}/dbordo/config.json') as json_file:
     data = json.load(json_file)
 
 if data["nome de autor"]=="":
